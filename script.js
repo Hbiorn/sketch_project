@@ -1,13 +1,15 @@
-const container = document.getElementById("container");
+function populateBoard(size) {
+    let board = document.querySelector(".board");
+    let squares = board.querySelectorAll("div");
+    squares.forEach((div) => div.remove());
+    board.style.gridTemplateColumns = `repeat(${size} , 1fr)`;
+    board.style.gridTemplateRows = `repeat(${size} , 1fr)`;
 
-function makeRows(rows, cols) {
-    container.style.setProperty('--grid-rows', rows);
-    container.style.setProperty('--grid-cols', cols);
-    for (c = 0; c < (rows * cols); c++) {
-        let cell = document.createElement("div");
-        cell.innerText = (c + 1);
-        container.appendChild(cell).className = "grid-item"
-    };
-};
-
-makeRows(16,16);
+    let amount = size * size;
+  for (let i = 0; i < amount; i++) {
+    let square = document.createElement("div");
+    //square.addEventListener("mouseover", colorSquare);
+    square.style.backgroundColor = "blue";
+    board.insertAdjacentElement("beforeend", square);
+  }
+}
